@@ -24,32 +24,6 @@ router.get('/:id', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
-  // create a new category
-  Category.bulkCreate([
-    {
-      name: 'Electronics',
-      description: 'Television and Computer',
-      id: '1a2b3c'
-    },
-    {
-      name: 'Books',
-      description: 'Horror and Sci-fi',
-      id: '4d5e6f'
-    },
-    {
-      name: 'Clothing',
-      description: 'Apparel for men, women, and kids',
-      id: '7h8i9j'
-    }
-  ])
-  .then(() => {
-    res.status(201).send('Categories created successfully');
-  })
-  .catch(error => {
-    res.status(500).send('Error creating categories: ' + error.message);
-  });
-});
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
@@ -75,7 +49,42 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
-  
+  Category.destroy({
+    where: {
+      id: req.params.isbn,
+    },
+  })
+  .then((deletedCategory) => {
+    res.json(deletedCategory);
+  })
+  .catch((err) => res.json(err));
+});
+
+router.post('/', (req, res) => {
+  // create a new category
+  Category.bulkCreate([
+    {
+      name: 'Electronics',
+      description: 'Television and Computer',
+      id: '1a2b3c'
+    },
+    {
+      name: 'Books',
+      description: 'Horror and Sci-fi',
+      id: '4d5e6f'
+    },
+    {
+      name: 'Clothing',
+      description: 'Apparel for men, women, and kids',
+      id: '7h8i9j'
+    }
+  ])
+  .then(() => {
+    res.status(201).send('Categories created successfully');
+  })
+  .catch(error => {
+    res.status(500).send('Error creating categories: ' + error.message);
+  });
 });
 
 module.exports = router;
