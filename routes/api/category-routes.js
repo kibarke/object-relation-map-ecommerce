@@ -28,9 +28,24 @@ router.post('/', (req, res) => {
   // create a new category
   Category.bulkCreate([
     {
-      // tbd
+      name: 'Electronics',
+      description: 'Television and Computer'
+    },
+    {
+      name: 'Books',
+      description: 'Horror and Sci-fi'
+    },
+    {
+      name: 'Clothing',
+      description: 'Apparel for men, women, and kids'
     }
   ])
+  .then(() => {
+    res.status(201).send('Categories created successfully');
+  })
+  .catch(error => {
+    res.status(500).send('Error creating categories: ' + error.message);
+  });
 });
 
 router.put('/:id', (req, res) => {
