@@ -18,7 +18,7 @@ router.get('/:id', (req, res) => {
   // be sure to include its associated Category and Tag data
   Product.findOne({
     where: {
-      id: req.params.id
+      tagIds: req.params.tagIds
     },
   }).then((productData) => {
     res.json(productData)
@@ -88,7 +88,7 @@ router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
     where: {
-      id: req.params.id,
+      tagIds: req.params.tagIds,
     },
   })
     .then((product) => {
@@ -130,6 +130,13 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
+  Product.destroy({
+    where: {
+      tagIds: req.params.tagIds
+    },
+  }).then((deletedProduct) => {
+    res.json(deletedProduct);
+  }).catch((err) => res.json(err));
 });
 
 module.exports = router;
