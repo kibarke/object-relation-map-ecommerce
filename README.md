@@ -30,4 +30,6 @@ THEN I am able to successfully create, update, and delete data in my database
 
 #### Help
 
-- Thomas Calle (https://github.com/ThomasCalle/Thomas-Object-Relational-Mapping-ORM-E-Commerce-Back-End)
+- Module 13 Notes
+- Thomas Calle => `https://github.com/ThomasCalle/Thomas-Object-Relational-Mapping-ORM-E-Commerce-Back-End`
+- MySQL Tutorial => `https://youtu.be/Cz3WcZLRaWc?si=LrZ047ItDYeF4kZX`
