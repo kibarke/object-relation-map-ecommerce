@@ -17,7 +17,7 @@ router.get('/:id', (req, res) => {
   // be sure to include its associated Products
   Category.findOneId({
     where: {
-      id: req.params.id
+      tagIds: req.params.tagIds
     },
   }).then((categoryData) => {
     res.json(categoryData);
@@ -31,12 +31,12 @@ router.put('/:id', (req, res) => {
     {
       name: req.body.name,
       description: req.body.description,
-      id: req.body.id,
+      tagIds: req.body.tagIds,
     },
     {
       // Gets the books based on the isbn given in the request parameters
       where: {
-        id: req.params.id,
+        tagIds: req.params.tagIds,
       },
     }
   )
@@ -51,7 +51,7 @@ router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
   Category.destroy({
     where: {
-      id: req.params.isbn,
+      tagIds: req.params.tagIds,
     },
   })
   .then((deletedCategory) => {
@@ -64,19 +64,19 @@ router.post('/', (req, res) => {
   // create a new category
   Category.bulkCreate([
     {
-      name: 'Electronics',
-      description: 'Television and Computer',
-      id: '1a2b3c'
+      name: 'Groceries',
+      description: 'Fruits and Veggies',
+      tagIds: '1a2b3c'
     },
     {
       name: 'Books',
       description: 'Horror and Sci-fi',
-      id: '4d5e6f'
+      tagIds: '4d5e6f'
     },
     {
       name: 'Clothing',
       description: 'Apparel for men, women, and kids',
-      id: '7h8i9j'
+      tagIds: '7h8i9j'
     }
   ])
   .then(() => {
