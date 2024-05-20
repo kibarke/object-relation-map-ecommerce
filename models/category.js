@@ -12,11 +12,11 @@ Category.init(
       allowNull: false, // Every value must be filled
       primaryKey: true, // Every value must be unique
       autoIncrement: true,
-    }
-  },
+    },
     category_name: {
       type: DataTypes.STRING, // Data types are set to strings
     },
+  },    
   {
     sequelize,
     timestamps: false,
